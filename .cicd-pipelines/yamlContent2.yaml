@@ -3,7 +3,7 @@ stages:
   - test
   
 default:
-  name: pipeline
+  name: pipeline2
   docker:
     registry: docker.io
     image: openjdk:17-jdk-slim
@@ -21,3 +21,13 @@ test:
   stage: test
   script: 
     - echo "Testing"
+start:
+  stage: build
+  needs: ["test"]
+  script:
+    - echo "Start"
+end:
+  stage: build
+  needs: ["checkout"]
+  script:
+    - echo "Building"
